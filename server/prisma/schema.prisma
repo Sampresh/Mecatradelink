@@ -1,0 +1,210 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum EmailTokenType {
+  VERIFY_EMAIL
+  RESET_PASSWORD
+}
+
+enum EnquiryType {
+  CONTACT
+  QUOTE
+}
+
+enum EnquiryStatus {
+  NEW
+  IN_PROGRESS
+  QUOTED
+  CLOSED
+}
+
+model User {
+  id                  String    @id @default(cuid())
+  name                String
+  email               String    @unique
+  passwordHash        String
+  phone               String?
+  company             String?
+  role                Role      @default(USER)
+  emailVerifiedAt     DateTime?
+  failedLoginAttempts Int       @default(0)
+  lockedUntil         DateTime?
+  passwordChangedAt   DateTime? // access tokens issued before this are rejected
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+
+  refreshTokens RefreshToken[]
+  emailTokens   EmailToken[]
+  enquiries     Enquiry[]
+}
+
+model RefreshToken {
+  id         String    @id @default(cuid())
+  tokenHash  String    @unique
+  userId     String
+  expiresAt  DateTime
+  revokedAt  DateTime?
+  replacedBy String?
+  createdAt  DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model EmailToken {
+  id        String         @id @default(cuid())
+  tokenHash String         @unique
+  type      EmailTokenType
+  userId    String
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime       @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, type])
+}
+
+model Category {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  slug        String   @unique
+  description String?
+  icon        String? // lucide icon name used on the client
+  imageUrl    String?
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  products Product[]
+  brands   Brand[]   @relation("BrandCategories")
+}
+
+model Brand {
+  id           String   @id @default(cuid())
+  name         String   @unique
+  slug         String   @unique
+  description  String?
+  website      String?
+  logoUrl      String?
+  logoPublicId String?
+  sortOrder    Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  products   Product[]
+  categories Category[] @relation("BrandCategories")
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  sku         String?  @unique
+  model       String? // model number / specification shown on cards
+  summary     String?
+  description String? // sanitised HTML
+  specs       Json? // [{ label, value }]
+  unit        String   @default("piece") // piece, box, roll, metre, coil
+  isActive    Boolean  @default(true)
+  isFeatured  Boolean  @default(false)
+  categoryId  String
+  brandId     String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  category     Category       @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  brand        Brand?         @relation(fields: [brandId], references: [id], onDelete: SetNull)
+  images       ProductImage[]
+  enquiryItems EnquiryItem[]
+
+  @@index([categoryId, isActive])
+  @@index([brandId])
+  @@index([isFeatured])
+}
+
+// Ordered photos; sortOrder 0 is the cover. Files are normalised to a square on upload.
+model ProductImage {
+  id        String   @id @default(cuid())
+  productId String
+  url       String
+  publicId  String
+  alt       String?
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId, sortOrder])
+}
+
+enum GalleryCategory {
+  SHOWROOM
+  PRODUCTS
+  STOCK
+  PROJECTS
+  INSTALLATIONS
+  COMPANY
+}
+
+model GalleryImage {
+  id        String          @id @default(cuid())
+  url       String
+  publicId  String
+  width     Int
+  height    Int
+  caption   String?
+  category  GalleryCategory
+  sortOrder Int             @default(0)
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+
+  @@index([category, sortOrder])
+}
+
+model Enquiry {
+  id        String        @id @default(cuid())
+  type      EnquiryType
+  status    EnquiryStatus @default(NEW)
+  name      String
+  email     String? // phone or email is required (validated in the API)
+  phone     String?
+  company   String?
+  location  String?
+  message   String?
+  adminNote String?
+  userId    String?
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  user  User?         @relation(fields: [userId], references: [id], onDelete: SetNull)
+  items EnquiryItem[]
+
+  @@index([status, createdAt])
+  @@index([userId])
+}
+
+model EnquiryItem {
+  id          String  @id @default(cuid())
+  enquiryId   String
+  productId   String?
+  productName String // snapshot, survives product deletion
+  quantity    Int
+  unit        String  @default("piece")
+
+  enquiry Enquiry  @relation(fields: [enquiryId], references: [id], onDelete: Cascade)
+  product Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+}

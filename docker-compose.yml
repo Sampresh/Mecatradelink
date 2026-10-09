@@ -1,0 +1,89 @@
+# Production-like stack built from the real images.
+#   docker compose -f docker-compose.yml up -d --build
+# Plain `docker compose up` also applies docker-compose.override.yml (hot-reload dev mode).
+# Secrets come from the repo-root .env (also used for ${VAR} interpolation below).
+
+x-db-url: &db-url postgresql://meca:meca@postgres:5432/mecatradelink?schema=public
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: meca
+      POSTGRES_PASSWORD: meca
+      POSTGRES_DB: mecatradelink
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U meca -d mecatradelink"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  # One-off: apply migrations, then seed admin + starter catalogue (idempotent).
+  migrate:
+    image: mecatradelink-server:build
+    build:
+      context: ./server
+      target: build
+    env_file: .env
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: *db-url
+      DIRECT_URL: *db-url
+    command: sh -c "npx prisma migrate deploy && node prisma/seed.js --catalog"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: "no"
+
+  server:
+    image: mecatradelink-server:latest
+    build:
+      context: ./server
+      target: runtime
+    env_file: .env
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: *db-url
+      DIRECT_URL: *db-url
+      CLIENT_URL: http://localhost:3000
+      SERVER_PUBLIC_URL: http://localhost:5001
+      FORCE_HTTPS: "false"
+      TRUST_PROXY: ${TRUST_PROXY:-0}  # proxy hops; tests set 1 to simulate distinct client IPs
+      REVALIDATE_URL: http://client:3000
+    ports:
+      - "5001:5001"
+    volumes:
+      - uploads:/app/uploads
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    restart: unless-stopped
+
+  client:
+    image: mecatradelink-client:latest
+    build:
+      context: ./client
+      target: runtime
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:5001/api/v1
+        NEXT_PUBLIC_SITE_URL: http://localhost:3000
+        UPLOADS_PROXY_ORIGIN: http://localhost:5001
+        NEXT_IMAGE_UNOPTIMIZED: "true"
+    environment:
+      INTERNAL_API_ORIGIN: http://server:5001
+      INTERNAL_API_KEY: ${INTERNAL_API_KEY:?set INTERNAL_API_KEY in .env}
+    ports:
+      - "3000:3000"
+    depends_on:
+      server:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  uploads:
