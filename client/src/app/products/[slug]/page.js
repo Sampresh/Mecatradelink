@@ -68,7 +68,7 @@ export default async function ProductPage(props) {
               <Link href={`/categories/${product.category.slug}`} className="text-sm font-medium text-primary hover:underline">{product.category.name}</Link>
               {product.sku && <span className="font-mono text-xs text-muted">SKU {product.sku}</span>}
             </div>
-            <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{product.name}</h1>
+            <h1 className="text-2xl font-bold leading-tight tracking-tight sm:text-4xl">{product.name}</h1>
             {product.model && <p className="mt-2 font-mono text-sm text-zinc-400">Model: {product.model}</p>}
             {product.brand && (
               <Link href={`/brands/${product.brand.slug}`} className="mt-4 inline-flex items-center gap-3 rounded-lg border border-border p-1.5 pr-4 text-sm hover:border-primary/50">
@@ -76,9 +76,9 @@ export default async function ProductPage(props) {
                 <span>Brand: <span className="font-semibold">{product.brand.name}</span></span>
               </Link>
             )}
-            {product.summary && <p className="mt-4 text-lg text-muted">{product.summary}</p>}
+            {product.summary && <p className="mt-3 text-base text-muted sm:mt-4 sm:text-lg">{product.summary}</p>}
 
-            <div className="mt-8 rounded-lg border border-border bg-surface p-5">
+            <div className="mt-6 rounded-lg border border-border bg-surface p-4 sm:mt-8 sm:p-5">
               <p className="mb-4 text-sm text-muted">
                 Prices depend on quantity and requirements. Ask us for today&apos;s price and stock. Sold per{' '}
                 <span className="text-foreground">{product.unit}</span>.

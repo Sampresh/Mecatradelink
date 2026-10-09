@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.6.0 — 2026-10-09
+
+- **Logo everywhere**: company badge (cut from `docs/brand/logo-original.png`, transparent master in `docs/brand/logo-master.png`) in the header, footer, admin sidebar, hero, login/register cards, product placeholders, email header, browser-tab icon (`app/icon.png`), iPhone icon (`app/apple-icon.png`), social share image (`app/opengraph-image.png`) and structured data.
+- **Home order**: Featured products now come before Shop by category.
+- **Mobile polish**: compact pill hero buttons side by side; contact strip is one row of 4 tap targets (~100px instead of ~300px); 2-column category, Why Choose Us and Who We Supply grids; compact section headings with "View all →" links; tighter spacing, page headers and product page; smaller floating WhatsApp button.
+- **Buttons**: shared size scale is mobile-first (`md` 40px / `lg` 48px on phones, unchanged from `sm` up).
+
 ## 0.5.0 — 2026-10-09
 
 - Product grids are two columns on phones (compact cards: "Enquire" label, no summary); mobile catalogue page ~60% shorter.

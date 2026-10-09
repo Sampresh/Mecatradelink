@@ -43,5 +43,7 @@ Electrical products supplier website (switches, cables, LED lighting, MCBs, DBs,
 - Never import client-module exports (`'use client'` files) into server components for plain helpers; shared helpers go in `src/lib/*` (e.g. `productMessage` in `lib/site.js`).
 - Sample photos: `server/scripts/sample-photos.js` uploads SVG illustrations via `POST /admin/products/:id/images?sample=true`; they're tagged by an alt suffix (`server/src/lib/sampleImages.js`). Uploading real photos to a product deletes its samples, and Replace clears the tag.
 - Admin forms with `<select>`/checkboxes fed by queries must mount only after those queries load (see `ProductForm`), otherwise saved values are dropped.
+- Brand assets: `docs/brand/logo-master.png` (transparent) is the source; regenerate `client/public/images/brand/logo-{96,192,512}.png`, `app/icon.png`, `app/apple-icon.png`, `app/opengraph-image.png` from it. Use `<BrandMark>` for the badge and `<Logo>` for badge + name.
+- Buttons are mobile-first; avoid hard-coding large heights on phones.
 - Business details (phone, WhatsApp, email, address, hours, map) live in `client/src/lib/site.js` and `server/src/config/business.js`.
 - Business contact details are placeholders in `client/src/lib/site.js`.
