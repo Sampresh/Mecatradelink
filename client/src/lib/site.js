@@ -7,7 +7,13 @@ export const site = {
   tagline: 'Electrical products & materials supplier',
   description:
     'Meca Trade Link, Madhyapur Thimi, supplies electrical switches, sockets, wires and cables, LED lighting, MCBs, distribution boards, accessories and tools for homes, shops, offices, buildings and electrical contractors.',
-  url: (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(/\/+$/, ''),
+  // Explicit URL first; on Vercel fall back to the auto-provided production/deployment domain.
+  url: (
+    process.env.NEXT_PUBLIC_SITE_URL
+    || (process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL && `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}`)
+    || (process.env.NEXT_PUBLIC_VERCEL_URL && `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`)
+    || 'http://localhost:3000'
+  ).replace(/\/+$/, ''),
   contact: {
     phone: '+977 984-3888991',
     phoneHref: `tel:+${PHONE_DIGITS}`,

@@ -1,4 +1,6 @@
 import { api } from './api';
+import { STATIC_MODE } from '@/lib/mode';
+import { buildEnquiry } from '@/lib/staticEnquiry';
 
 const data = (res) => res.data.data;
 const files = (field, list) => {
@@ -35,9 +37,13 @@ export const catalogService = {
 };
 
 // ── Enquiries ────────────────────────────────────────────────
+// In showcase mode there is no API: the enquiry becomes a WhatsApp/email message instead.
+// `lines` (product names/quantities) are only needed for that message.
 export const enquiryService = {
-  contact: (body) => api.post('/enquiries/contact', body).then((r) => r.data),
-  quote: (body) => api.post('/enquiries/quote', body).then((r) => r.data),
+  contact: (body) =>
+    STATIC_MODE ? Promise.resolve(buildEnquiry({ kind: 'contact', ...body })) : api.post('/enquiries/contact', body).then((r) => r.data),
+  quote: (body, { lines } = {}) =>
+    STATIC_MODE ? Promise.resolve(buildEnquiry({ kind: 'quote', ...body, lines })) : api.post('/enquiries/quote', body).then((r) => r.data),
 };
 
 // ── Admin ────────────────────────────────────────────────────

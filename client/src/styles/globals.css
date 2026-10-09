@@ -55,3 +55,124 @@
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
+/* ─────────────────────────────────────────────────────────────
+   Motion system
+   - Scroll reveals: add data-reveal (variants: default | soft | fade | zoom).
+     Elements are only hidden once <html data-motion> is set by the inline script, so
+     without JS (or with reduced motion) everything is simply visible.
+   - Items revealed together stagger via data-reveal-delay="1..8" (set by the script).
+   - .card-glow: cursor-following border light + 2px lift (pointer devices),
+     press feedback on touch. .card-glow-fill adds a soft inner light.
+   - .btn-shine: one light sweep across a button on hover.
+   ───────────────────────────────────────────────────────────── */
+:root {
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --reveal-duration: 650ms;
+  --reveal-step: 65ms;
+}
+
+/* Reveals animate the individual `translate` / `scale` / `opacity` / `filter` properties, so
+   hover effects (which use `transform`) compose with them instead of fighting them.
+   The stagger delay (--rd) applies to the reveal only, never to hover transitions. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-motion] [data-reveal] {
+    --rd: 0ms;
+    opacity: 0;
+    translate: 0 18px;
+    scale: 0.985;
+    transition:
+      opacity var(--reveal-duration) var(--ease-out-expo) var(--rd),
+      translate var(--reveal-duration) var(--ease-out-expo) var(--rd),
+      scale var(--reveal-duration) var(--ease-out-expo) var(--rd),
+      filter var(--reveal-duration) var(--ease-out-expo) var(--rd),
+      transform 300ms var(--ease-out-quart),
+      border-color 300ms ease,
+      box-shadow 300ms ease;
+  }
+  [data-motion] [data-reveal='soft'] { translate: 0 14px; scale: none; filter: blur(8px); }
+  [data-motion] [data-reveal='fade'] { translate: none; scale: none; }
+  [data-motion] [data-reveal='zoom'] { translate: none; scale: 0.94; }
+  [data-motion] [data-reveal][data-revealed] { opacity: 1; translate: none; scale: none; filter: none; }
+  /* Delay rules must out-rank the base rule's `--rd: 0ms` (same element). */
+
+  [data-motion] [data-reveal][data-reveal-delay='1'] { --rd: calc(var(--reveal-step) * 1); }
+  [data-motion] [data-reveal][data-reveal-delay='2'] { --rd: calc(var(--reveal-step) * 2); }
+  [data-motion] [data-reveal][data-reveal-delay='3'] { --rd: calc(var(--reveal-step) * 3); }
+  [data-motion] [data-reveal][data-reveal-delay='4'] { --rd: calc(var(--reveal-step) * 4); }
+  [data-motion] [data-reveal][data-reveal-delay='5'] { --rd: calc(var(--reveal-step) * 5); }
+  [data-motion] [data-reveal][data-reveal-delay='6'] { --rd: calc(var(--reveal-step) * 6); }
+  [data-motion] [data-reveal][data-reveal-delay='7'] { --rd: calc(var(--reveal-step) * 7); }
+  [data-motion] [data-reveal][data-reveal-delay='8'] { --rd: calc(var(--reveal-step) * 8); }
+}
+
+@layer components {
+  .card-glow {
+    position: relative;
+    isolation: isolate;
+    transition:
+      transform 300ms var(--ease-out-quart),
+      border-color 300ms ease,
+      box-shadow 300ms ease;
+  }
+  /* 1px border light that follows the cursor */
+  .card-glow::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    padding: 1px;
+    border-radius: inherit;
+    background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 0%), rgb(var(--primary) / 0.75), transparent 65%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 300ms ease;
+    pointer-events: none;
+  }
+  /* soft inner light (opt-in: not used over white product photos) */
+  .card-glow-fill::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 0%), rgb(var(--primary) / 0.1), transparent 50%);
+    opacity: 0;
+    transition: opacity 300ms ease;
+    pointer-events: none;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .card-glow:hover {
+      transform: translate3d(0, -2px, 0);
+      border-color: rgb(var(--primary) / 0.35);
+      box-shadow: 0 22px 50px -28px rgb(var(--primary) / 0.5), 0 10px 30px -18px rgb(0 0 0 / 0.6);
+    }
+    .card-glow:hover::before,
+    .card-glow-fill:hover::after { opacity: 1; }
+  }
+  @media (hover: none) {
+    .card-glow:active { transform: scale(0.985); transition-duration: 120ms; }
+  }
+
+  .btn-shine { position: relative; overflow: hidden; isolation: isolate; }
+  .btn-shine::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(110deg, transparent 30%, rgb(255 255 255 / 0.45) 50%, transparent 70%);
+    transform: translateX(-120%);
+    pointer-events: none;
+  }
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .btn-shine:hover::after { transform: translateX(120%); transition: transform 750ms var(--ease-out-quart); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-glow, .card-glow::before, .card-glow-fill::after { transition: none !important; }
+  .card-glow:hover, .card-glow:active { transform: none !important; }
+}

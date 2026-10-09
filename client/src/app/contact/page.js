@@ -4,6 +4,7 @@ import WhatsAppIcon from '@/components/common/WhatsAppIcon';
 import ContactForm from '@/components/forms/ContactForm';
 import { buildMetadata } from '@/lib/seo';
 import { site, whatsappLink } from '@/lib/site';
+import { reveal } from '@/lib/motion';
 
 export const metadata = buildMetadata({
   title: 'Contact Us',
@@ -35,7 +36,8 @@ export default function ContactPage() {
               <a
                 href={href}
                 {...(external && { target: '_blank', rel: 'noopener noreferrer' })}
-                className="group flex h-full flex-col rounded-lg border border-border bg-surface p-5 transition-colors hover:border-primary/50"
+                {...reveal()}
+                className="card-glow card-glow-fill group flex h-full flex-col rounded-lg border border-border bg-surface p-5"
               >
                 <span className={`mb-4 grid h-11 w-11 place-items-center rounded-lg ${accent ?? 'bg-primary/10 text-primary'}`}>
                   <Icon className="h-5 w-5" aria-hidden />
@@ -52,14 +54,14 @@ export default function ContactPage() {
       </section>
 
       <section className="container-page grid gap-8 pb-16 lg:grid-cols-[1.4fr_1fr]">
-        <div className="rounded-lg border border-border bg-surface p-6 sm:p-8">
+        <div {...reveal()} className="rounded-lg border border-border bg-surface p-6 sm:p-8">
           <h2 className="mb-1 text-xl font-semibold">Send us a message</h2>
           <p className="mb-6 text-sm text-muted">Leave a phone number or email, whichever you prefer.</p>
           <ContactForm />
         </div>
 
         <div className="space-y-4">
-          <div className="overflow-hidden rounded-lg border border-border">
+          <div {...reveal('fade')} className="overflow-hidden rounded-lg border border-border">
             <iframe
               title={`Map: ${site.name}, ${site.contact.address}`}
               src={site.contact.mapEmbed}
@@ -68,7 +70,7 @@ export default function ContactPage() {
               referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
-          <div className="rounded-lg border border-border bg-surface p-5">
+          <div {...reveal()} className="rounded-lg border border-border bg-surface p-5">
             <h2 className="mb-3 flex items-center gap-2 font-semibold"><Clock className="h-4 w-4 text-primary" aria-hidden /> Business hours</h2>
             <dl className="space-y-2 text-sm">
               {site.contact.hours.map((h) => (

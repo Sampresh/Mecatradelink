@@ -10,11 +10,12 @@ import BrandLogo from '@/components/catalog/BrandLogo';
 import WhatsAppIcon from '@/components/common/WhatsAppIcon';
 import { ButtonLink, buttonClasses } from '@/components/ui/button';
 import { site, whatsappLink, GALLERY_CATEGORIES } from '@/lib/site';
+import { reveal } from '@/lib/motion';
 
 // On phones the action is a compact "View all →" link beside the eyebrow; from sm up it's an outline button.
 function SectionHeading({ eyebrow, title, description, action, id }) {
   return (
-    <div className="mb-6 flex flex-col gap-4 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
+    <div {...reveal('soft')} className="mb-6 flex flex-col gap-4 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
       <div className="max-w-2xl">
         <div className="mb-1.5 flex items-center justify-between gap-4 sm:mb-2">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary sm:text-sm">{eyebrow}</p>
@@ -52,7 +53,7 @@ export function ContactStrip() {
       {/* Phones: 4 compact actions in one row */}
       <ul className="container-page grid grid-cols-4 gap-1 py-3 sm:hidden">
         {items.map((item) => (
-          <li key={item.label}>
+          <li key={item.label} {...reveal('fade')}>
             <a
               {...linkProps(item)}
               aria-label={`${item.label}: ${item.value}`}
@@ -70,8 +71,8 @@ export function ContactStrip() {
       {/* Tablet / desktop: icon + label + value */}
       <div className="container-page hidden grid-cols-2 gap-x-6 gap-y-4 py-6 sm:grid lg:grid-cols-4">
         {items.map((item) => (
-          <a key={item.label} {...linkProps(item)} className="flex items-center gap-3 rounded-lg transition-colors hover:text-primary">
-            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary"><item.icon className="h-5 w-5" /></span>
+          <a key={item.label} {...reveal('fade')} {...linkProps(item)} className="group flex items-center gap-3 rounded-lg transition-colors hover:text-primary">
+            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary transition-transform duration-300 group-hover:scale-110"><item.icon className="h-5 w-5" /></span>
             <span className="min-w-0">
               <span className="block text-xs uppercase tracking-wider text-muted">{item.label}</span>
               <span className="block truncate text-sm font-semibold text-zinc-100">{item.value}</span>
@@ -142,8 +143,8 @@ export function WhyChooseUs() {
       />
       <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
         {WHY.map(({ icon: Icon, title, text }) => (
-          <div key={title} className="rounded-lg border border-border bg-surface p-4 transition-colors hover:border-primary/40 sm:p-6">
-            <span className="mb-3 grid h-9 w-9 place-items-center rounded-lg bg-primary/10 text-primary sm:mb-4 sm:h-11 sm:w-11"><Icon className="h-[18px] w-[18px] sm:h-5 sm:w-5" aria-hidden /></span>
+          <div key={title} {...reveal()} className="card-glow card-glow-fill group rounded-lg border border-border bg-surface p-4 sm:p-6">
+            <span className="mb-3 grid h-9 w-9 place-items-center rounded-lg bg-primary/10 text-primary transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110 group-hover:-rotate-6 sm:mb-4 sm:h-11 sm:w-11"><Icon className="h-[18px] w-[18px] sm:h-5 sm:w-5" aria-hidden /></span>
             <h3 className="text-sm font-semibold leading-snug sm:text-base">{title}</h3>
             <p className="mt-1 text-xs leading-relaxed text-muted sm:mt-1.5 sm:text-sm">{text}</p>
           </div>
@@ -152,7 +153,8 @@ export function WhyChooseUs() {
           href={whatsappLink('Hello Meca Trade Link, I would like a quotation.')}
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex flex-col justify-between gap-3 rounded-lg border border-primary/40 bg-primary/10 p-4 transition-colors hover:bg-primary/15 sm:p-6"
+          {...reveal()}
+          className="card-glow card-glow-fill group flex flex-col justify-between gap-3 rounded-lg border border-primary/40 bg-primary/10 p-4 sm:p-6"
         >
           <Zap className="h-7 w-7 text-primary" aria-hidden />
           <span>
@@ -178,7 +180,7 @@ export function BrandsSection({ brands }) {
         />
         <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
           {brands.slice(0, 12).map((b) => (
-            <li key={b.id}>
+            <li key={b.id} {...reveal('zoom')}>
               <Link href={`/brands/${b.slug}`} className="block rounded-lg ring-primary/0 transition hover:-translate-y-0.5 hover:ring-2 hover:ring-primary/60" title={b.name}>
                 <BrandLogo brand={b} size="lg" />
               </Link>
@@ -205,8 +207,8 @@ export function AudienceSection() {
       <SectionHeading id="audience-heading" eyebrow="Who we supply" title="Built for the people who build" />
       <div className="grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-border bg-border lg:grid-cols-3">
         {AUDIENCES.map(({ icon: Icon, title, text }) => (
-          <div key={title} className="bg-background p-4 transition-colors hover:bg-surface sm:p-7">
-            <Icon className="mb-3 h-6 w-6 text-primary sm:mb-4 sm:h-7 sm:w-7" aria-hidden />
+          <div key={title} {...reveal('fade')} className="group bg-background p-4 transition-colors duration-300 hover:bg-surface sm:p-7">
+            <Icon className="mb-3 h-6 w-6 text-primary transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-0.5 group-hover:scale-110 sm:mb-4 sm:h-7 sm:w-7" aria-hidden />
             <h3 className="text-sm font-semibold sm:text-base">{title}</h3>
             <p className="mt-1 text-xs leading-relaxed text-muted sm:mt-1.5 sm:text-sm">{text}</p>
           </div>
@@ -226,7 +228,7 @@ export function FocusSection() {
   return (
     <section className="border-y border-border bg-surface/30 py-12 sm:py-20 lg:py-24" aria-labelledby="focus-heading">
       <div className="container-page grid items-center gap-12 lg:grid-cols-2">
-        <div>
+        <div {...reveal('soft')}>
           <p className="mb-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-primary sm:mb-2 sm:text-sm">Our focus</p>
           <h2 id="focus-heading" className="text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">
             An electrical supplier, <span className="text-primary">not an appliance store</span>
@@ -237,7 +239,7 @@ export function FocusSection() {
           </p>
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
-          <div className="rounded-lg border border-primary/30 bg-primary/5 p-6">
+          <div {...reveal()} className="card-glow rounded-lg border border-primary/30 bg-primary/5 p-6">
             <h3 className="mb-4 font-semibold text-primary">We supply</h3>
             <ul className="space-y-2.5">
               {WE_SUPPLY.map((t) => (
@@ -245,7 +247,7 @@ export function FocusSection() {
               ))}
             </ul>
           </div>
-          <div className="rounded-lg border border-border bg-surface p-6">
+          <div {...reveal()} className="card-glow rounded-lg border border-border bg-surface p-6">
             <h3 className="mb-4 font-semibold text-muted">We don&apos;t sell</h3>
             <ul className="space-y-2.5">
               {WE_DONT.map((t) => (
@@ -275,9 +277,10 @@ export function GalleryTeaser({ images }) {
           <Link
             key={img.id}
             href="/gallery"
+            {...reveal('zoom')}
             className={`group relative overflow-hidden rounded-lg border border-border ${i === 0 ? 'col-span-2 row-span-2 aspect-square md:aspect-auto' : 'aspect-square'}`}
           >
-            <Image src={img.url} alt={img.caption || label(img.category)} fill sizes={i === 0 ? '50vw' : '25vw'} className="object-cover transition-transform duration-500 group-hover:scale-105" />
+            <Image src={img.url} alt={img.caption || label(img.category)} fill sizes={i === 0 ? '50vw' : '25vw'} className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105" />
             <span className="absolute bottom-2 left-2 rounded-full bg-black/60 px-2.5 py-1 text-xs font-medium text-white backdrop-blur">{label(img.category)}</span>
           </Link>
         ))}
@@ -289,7 +292,7 @@ export function GalleryTeaser({ images }) {
 export function CtaBand() {
   return (
     <section className="container-page pb-16 pt-4 sm:pb-24">
-      <div className="relative overflow-hidden rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/15 via-surface to-surface p-6 sm:p-14">
+      <div {...reveal()} className="relative overflow-hidden rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/15 via-surface to-surface p-6 sm:p-14">
         <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-primary/20 blur-3xl" />
         <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
           <div className="max-w-xl">

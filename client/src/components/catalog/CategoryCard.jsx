@@ -1,15 +1,16 @@
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import CategoryIcon from '@/components/common/CategoryIcon';
+import { reveal } from '@/lib/motion';
 
 export default function CategoryCard({ category }) {
   return (
     <Link
       href={`/categories/${category.slug}`}
-      className="group relative flex flex-col overflow-hidden rounded-lg border border-border bg-surface p-4 transition-all duration-300 hover:border-primary/50 hover:bg-surface-2 sm:p-6"
+      {...reveal()}
+      className="card-glow card-glow-fill group flex flex-col overflow-hidden rounded-lg border border-border bg-surface p-4 sm:p-6"
     >
-      <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-primary/0 blur-2xl transition-colors duration-500 group-hover:bg-primary/20" />
-      <span className="mb-3 grid h-10 w-10 place-items-center rounded-lg border border-primary/25 bg-primary/10 text-primary sm:mb-5 sm:h-12 sm:w-12">
+      <span className="mb-3 grid h-10 w-10 place-items-center rounded-lg border border-primary/25 bg-primary/10 text-primary transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110 group-hover:-rotate-6 sm:mb-5 sm:h-12 sm:w-12">
         <CategoryIcon name={category.icon} className="h-5 w-5 sm:h-6 sm:w-6" />
       </span>
       <h3 className="flex items-center gap-1 text-sm font-semibold leading-snug sm:text-base">

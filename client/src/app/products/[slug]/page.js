@@ -11,6 +11,7 @@ import { ProductGrid } from '@/components/catalog/ProductCard';
 import { serverFetch } from '@/lib/serverApi';
 import { buildMetadata, jsonLdHtml } from '@/lib/seo';
 import { productMessage, site, whatsappLink } from '@/lib/site';
+import { reveal } from '@/lib/motion';
 
 const getProduct = (slug) => serverFetch(`/products/${slug}`, { revalidate: 120 });
 
@@ -61,9 +62,11 @@ export default async function ProductPage(props) {
         </nav>
 
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
-          <ProductGallery images={product.images} name={product.name} />
+          <div {...reveal('zoom')}>
+            <ProductGallery images={product.images} name={product.name} />
+          </div>
 
-          <div>
+          <div {...reveal('soft')}>
             <div className="mb-3 flex flex-wrap items-center gap-2">
               <Link href={`/categories/${product.category.slug}`} className="text-sm font-medium text-primary hover:underline">{product.category.name}</Link>
               {product.sku && <span className="font-mono text-xs text-muted">SKU {product.sku}</span>}
@@ -110,7 +113,7 @@ export default async function ProductPage(props) {
             </ul>
 
             {specs.length > 0 && (
-              <section className="mt-10" aria-labelledby="specs-heading">
+              <section {...reveal()} className="mt-10" aria-labelledby="specs-heading">
                 <h2 id="specs-heading" className="mb-3 font-semibold">Specifications</h2>
                 <dl className="divide-y divide-border overflow-hidden rounded-lg border border-border">
                   {specs.map((s) => (
@@ -124,7 +127,7 @@ export default async function ProductPage(props) {
             )}
 
             {product.description && (
-              <section className="mt-10" aria-labelledby="desc-heading">
+              <section {...reveal()} className="mt-10" aria-labelledby="desc-heading">
                 <h2 id="desc-heading" className="mb-3 font-semibold">Description</h2>
                 {/* Sanitised server-side with an allowlist (sanitize-html). */}
                 <div className="prose-content" dangerouslySetInnerHTML={{ __html: product.description }} />
@@ -134,7 +137,7 @@ export default async function ProductPage(props) {
         </div>
 
         {product.related?.length > 0 && (
-          <section className="mt-20" aria-labelledby="related-heading">
+          <section className="mt-16 sm:mt-20" aria-labelledby="related-heading">
             <h2 id="related-heading" className="mb-6 text-2xl font-bold tracking-tight">More in {product.category.name}</h2>
             <ProductGrid products={product.related} />
           </section>

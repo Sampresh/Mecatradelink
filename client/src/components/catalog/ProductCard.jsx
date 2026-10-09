@@ -2,16 +2,17 @@ import Link from 'next/link';
 import ProductImage from './ProductImage';
 import AddToQuoteButton from './AddToQuoteButton';
 import EnquireButton from './EnquireButton';
+import { reveal } from '@/lib/motion';
 
 export default function ProductCard({ product }) {
   return (
-    <article className="group flex flex-col overflow-hidden rounded-lg border border-border bg-surface transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-[0_8px_40px_-12px_rgb(var(--primary)/0.35)]">
+    <article {...reveal()} className="card-glow group flex flex-col overflow-hidden rounded-lg border border-border bg-surface">
       <Link href={`/products/${product.slug}`} className="block" tabIndex={-1} aria-hidden>
         <ProductImage
           src={product.imageUrl}
           alt={product.name}
           sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, 50vw"
-          className="transition-transform duration-500 group-hover:scale-[1.03]"
+          className="transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
         />
       </Link>
       <div className="flex flex-1 flex-col p-3 sm:p-4">

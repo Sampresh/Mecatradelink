@@ -8,6 +8,10 @@ Website for **Meca Trade Link**, a supplier of electrical products and installat
 | `server/` | Express 5 (ESM), Prisma, PostgreSQL, JWT, Zod, Nodemailer, Cloudinary | Render |
 | DB | PostgreSQL 16 | Neon |
 
+## Showcase mode (client only)
+
+Deploy just `client/` (e.g. to Vercel) **without** `NEXT_PUBLIC_API_URL` and the site runs entirely from a bundled catalogue snapshot. Enquiries go out via WhatsApp/email; accounts and admin are hidden. Refresh the snapshot with `cd client && npm run export-data` while the API is running. See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md#option-a-showcase-only-client-on-vercel-no-server-or-database).
+
 ## Quick start (local)
 
 ```bash

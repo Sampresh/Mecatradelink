@@ -6,7 +6,7 @@ import { logger } from '../utils/logger.js';
 // Bursts (e.g. several photo operations) are collapsed into one call.
 let timer = null;
 
-function triggerRevalidate() {
+export function triggerRevalidate() {
   if (!env.REVALIDATE_URL || !env.INTERNAL_API_KEY) return;
   clearTimeout(timer);
   timer = setTimeout(() => {

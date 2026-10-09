@@ -1,4 +1,6 @@
 import 'server-only';
+import { STATIC_MODE } from './mode';
+import { staticFetch } from './staticApi';
 
 // Every catalogue fetch carries this tag; /api/revalidate expires it after admin edits.
 export const CATALOG_TAG = 'catalog';
@@ -11,6 +13,8 @@ const ORIGIN = (process.env.INTERNAL_API_ORIGIN || 'http://localhost:5001').repl
  * succeed while the API is unreachable).
  */
 export async function serverFetch(path, { revalidate = 60, fallback } = {}) {
+  // Showcase mode: no API, answer from the bundled catalogue snapshot.
+  if (STATIC_MODE) return staticFetch(path);
   try {
     const res = await fetch(`${ORIGIN}/api/v1${path}`, {
       next: { revalidate, tags: [CATALOG_TAG] },

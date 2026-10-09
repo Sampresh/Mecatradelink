@@ -4,6 +4,7 @@ import { ProductGrid } from './ProductCard';
 import Pagination from '@/components/common/Pagination';
 import { buttonClasses } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { reveal } from '@/lib/motion';
 
 // Server component: filters are plain links/GET form so listing pages stay crawlable.
 export default function ProductListing({ products, meta, categories, activeCategory, q, basePath }) {
@@ -23,7 +24,7 @@ export default function ProductListing({ products, meta, categories, activeCateg
 
   return (
     <div className="container-page py-10">
-      <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+      <div {...reveal('fade')} className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <div className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 lg:mx-0 lg:flex-wrap lg:px-0">
           <Link href={hrefFor({ q, base: '/products' })} className={chip(!activeCategory)}>All</Link>
           {categories.map((c) => (
@@ -59,7 +60,7 @@ export default function ProductListing({ products, meta, categories, activeCateg
       {products.length ? (
         <ProductGrid products={products} />
       ) : (
-        <div className="flex flex-col items-center rounded-lg border border-dashed border-border py-20 text-center">
+        <div {...reveal()} className="flex flex-col items-center rounded-lg border border-dashed border-border py-20 text-center">
           <PackageSearch className="mb-4 h-10 w-10 text-muted" aria-hidden />
           <h2 className="text-lg font-semibold">No products found</h2>
           <p className="mt-1 max-w-sm text-sm text-muted">

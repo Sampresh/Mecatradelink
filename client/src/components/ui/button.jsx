@@ -4,12 +4,12 @@ import { Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const VARIANTS = {
-  primary: 'bg-primary text-primary-foreground hover:bg-primary-hover shadow-[0_0_24px_-6px_rgb(var(--primary)/0.6)]',
+  primary: 'btn-shine bg-primary text-primary-foreground hover:bg-primary-hover shadow-[0_0_24px_-6px_rgb(var(--primary)/0.6)]',
   secondary: 'bg-surface-2 text-foreground hover:bg-border',
   outline: 'border border-border bg-transparent text-foreground hover:border-primary/60 hover:bg-primary/5',
   ghost: 'text-muted hover:bg-surface-2 hover:text-foreground',
   danger: 'bg-danger/90 text-white hover:bg-danger',
-  light: 'bg-white text-black hover:bg-zinc-200',
+  light: 'btn-shine bg-white text-black hover:bg-zinc-200',
 };
 
 // Mobile-first: phones get compact (but ≥40px tap-target) buttons; full size from `sm` up.

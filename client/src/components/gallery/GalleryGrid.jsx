@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { ChevronLeft, ChevronRight, Images, X } from 'lucide-react';
 import { GALLERY_CATEGORIES } from '@/lib/site';
 import { cn } from '@/lib/utils';
+import { reveal } from '@/lib/motion';
 
 const label = (value) => GALLERY_CATEGORIES.find((c) => c.value === value)?.label ?? value;
 
@@ -94,7 +95,7 @@ export default function GalleryGrid({ images, initialCategory = '' }) {
 
       <ul className="columns-1 gap-4 sm:columns-2 lg:columns-3">
         {visible.map((img, i) => (
-          <li key={img.id} className="mb-4 break-inside-avoid">
+          <li key={img.id} {...reveal('zoom')} className="mb-4 break-inside-avoid">
             <button onClick={() => setOpen(i)} className="group relative block w-full overflow-hidden rounded-lg border border-border bg-surface text-left">
               <Image
                 src={img.url}

@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.8.0 — 2026-10-09
+
+- **Motion system** (premium, performance-safe):
+  - Scroll reveals on sections, headings and cards (`{...reveal()}` / `reveal('soft'|'fade'|'zoom')`): fade + rise (+ blur-to-sharp on headings), expo-out, ~650ms; items revealed together cascade 65ms apart (max 8 steps).
+  - Spotlight cards (`.card-glow`, `.card-glow-fill`): amber border light that follows the cursor, 2px lift and soft shadow on pointer devices; press feedback on touch. Icon micro-motion inside cards; slower, smoother image zoom.
+  - Shine sweep on primary and light buttons (hover only).
+  - Implemented with CSS + a tiny inline observer (no per-element JS, zero layout shift). Content stays visible without JS and with "reduce motion"; hydration-safe (`suppressHydrationWarning` via `reveal()`).
+
+## 0.7.0 — 2026-10-09
+
+- **Showcase mode**: the client runs with no server/database when `NEXT_PUBLIC_API_URL` is unset (default on a fresh Vercel project). Catalogue served from `client/src/data/catalog.json` + `public/images/catalog/` (`npm run export-data`); search, filters, pagination, related products and 404s work as before. Enquire Now / quote list / contact form produce a ready-to-send WhatsApp message with email fallback; login/account/admin show a "coming soon" panel. Site URL falls back to Vercel's domain.
+- API asks the website to refresh its cached catalogue on every startup (a restart could drop a pending post-edit refresh and leave deleted photos referenced).
+
 ## 0.6.0 — 2026-10-09
 
 - **Logo everywhere**: company badge (cut from `docs/brand/logo-original.png`, transparent master in `docs/brand/logo-master.png`) in the header, footer, admin sidebar, hero, login/register cards, product placeholders, email header, browser-tab icon (`app/icon.png`), iPhone icon (`app/apple-icon.png`), social share image (`app/opengraph-image.png`) and structured data.

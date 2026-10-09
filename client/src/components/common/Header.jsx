@@ -10,6 +10,7 @@ import { nav } from '@/lib/site';
 import { cn } from '@/lib/utils';
 import { useAuthStore } from '@/store/authStore';
 import { useQuoteList } from '@/hooks/useQuoteList';
+import { STATIC_MODE } from '@/lib/mode';
 
 export default function Header() {
   const pathname = usePathname();
@@ -93,7 +94,7 @@ export default function Header() {
               </>
             ) : (
               <>
-                <ButtonLink href="/login" variant="ghost" size="sm">Log in</ButtonLink>
+                {!STATIC_MODE && <ButtonLink href="/login" variant="ghost" size="sm">Log in</ButtonLink>}
                 <ButtonLink href="/quote" size="sm">Get a Quote</ButtonLink>
               </>
             )}
@@ -125,6 +126,8 @@ export default function Header() {
                 <Link href="/account" className="rounded-lg px-3 py-3 text-zinc-200 hover:bg-surface-2">My account</Link>
                 <button onClick={handleLogout} className="rounded-lg px-3 py-3 text-left text-zinc-200 hover:bg-surface-2">Log out</button>
               </>
+            ) : STATIC_MODE ? (
+              <ButtonLink href="/quote" className="mt-1">Get a Quote</ButtonLink>
             ) : (
               <div className="grid grid-cols-2 gap-2 pt-1">
                 <ButtonLink href="/login" variant="outline">Log in</ButtonLink>

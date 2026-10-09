@@ -3,6 +3,7 @@ import { Clock, Mail, MapPin, Phone } from 'lucide-react';
 import Logo from './Logo';
 import WhatsAppIcon from './WhatsAppIcon';
 import { site, whatsappLink } from '@/lib/site';
+import { reveal } from '@/lib/motion';
 
 const COLUMNS = [
   {
@@ -33,7 +34,7 @@ export default function Footer() {
   return (
     <footer className="border-t border-border bg-surface/40">
       <div className="container-page grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr_1.3fr]">
-        <div>
+        <div {...reveal('fade')}>
           <Logo />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted">
             Supplier of electrical products and installation materials for homes, shops, offices, buildings and contractors.
@@ -41,7 +42,7 @@ export default function Footer() {
         </div>
 
         {COLUMNS.map((col) => (
-          <div key={col.title}>
+          <div key={col.title} {...reveal('fade')}>
             <h2 className="mb-4 text-sm font-semibold text-foreground">{col.title}</h2>
             <ul className="space-y-2.5">
               {col.links.map((l) => (
@@ -53,7 +54,7 @@ export default function Footer() {
           </div>
         ))}
 
-        <div>
+        <div {...reveal('fade')}>
           <h2 className="mb-4 text-sm font-semibold text-foreground">Get in touch</h2>
           <ul className="space-y-3 text-sm text-muted">
             <li className="flex gap-2.5"><Phone className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden /><a href={site.contact.phoneHref} className="hover:text-foreground">{site.contact.phone}</a></li>

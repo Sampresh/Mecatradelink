@@ -1,11 +1,12 @@
 import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
+import { reveal } from '@/lib/motion';
 
 export default function PageHeader({ eyebrow, title, description, crumbs = [], children }) {
   return (
     <section className="relative overflow-hidden border-b border-border pt-16">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgb(var(--primary)/0.12),transparent_60%)]" />
-      <div className="container-page relative py-8 sm:py-16">
+      <div {...reveal('soft')} className="container-page relative py-8 sm:py-16">
         {crumbs.length > 0 && (
           <nav aria-label="Breadcrumb" className="mb-4">
             <ol className="flex flex-wrap items-center gap-1 text-xs text-muted">

@@ -7,6 +7,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import { CheckCircle2, ClipboardList, Minus, Plus, Send, Trash2 } from 'lucide-react';
 import ContactFields, { contactDefaults } from './ContactFields';
+import SendVia from './SendVia';
+import { STATIC_MODE } from '@/lib/mode';
 import ProductImage from '@/components/catalog/ProductImage';
 import { Button, ButtonLink } from '@/components/ui/button';
 import { Field, Textarea } from '@/components/ui/input';
@@ -16,6 +18,7 @@ import { enquiryService } from '@/services';
 import { quoteSchema } from '@/lib/schemas';
 import { getErrorMessage } from '@/lib/utils';
 import { useAuthStore } from '@/store/authStore';
+import { reveal } from '@/lib/motion';
 
 export default function QuoteRequest() {
   const user = useAuthStore((s) => s.user);
@@ -31,22 +34,38 @@ export default function QuoteRequest() {
   }, [user, reset]);
 
   const mutation = useMutation({
-    mutationFn: enquiryService.quote,
+    mutationFn: (body) => enquiryService.quote(body, { lines: items }),
     onSuccess: (res, vars) => {
+      // Showcase mode: keep the list until the customer actually sends the message.
+      if (res.whatsapp) return setDone(res);
       clear();
-      setDone(vars.email ? `${res.message} A copy has been emailed to you.` : res.message);
+      setDone({ message: vars.email ? `${res.message} A copy has been emailed to you.` : res.message });
     },
   });
 
   const onSubmit = (values) =>
     mutation.mutate({ ...values, items: items.map((i) => ({ productId: i.id, quantity: i.quantity })) });
 
+  if (done?.whatsapp) {
+    return (
+      <div className="flex flex-col items-center rounded-lg border border-success/30 bg-success/5 px-6 py-14 text-center">
+        <CheckCircle2 className="mb-4 h-12 w-12 text-success" aria-hidden />
+        <h2 className="text-2xl font-semibold">Your quote request is ready</h2>
+        <p className="mt-2 max-w-md text-muted">
+          Send the list of {items.length} product{items.length === 1 ? '' : 's'} to our sales team. We&apos;ll reply with prices and availability.
+        </p>
+        <SendVia whatsapp={done.whatsapp} mailto={done.mailto} onSent={clear} />
+        <button onClick={() => setDone(null)} className="mt-4 text-sm text-muted hover:text-foreground">Edit list</button>
+      </div>
+    );
+  }
+
   if (done) {
     return (
       <div className="flex flex-col items-center rounded-lg border border-success/30 bg-success/5 px-6 py-16 text-center">
         <CheckCircle2 className="mb-4 h-12 w-12 text-success" aria-hidden />
         <h2 className="text-2xl font-semibold">Quote request sent</h2>
-        <p className="mt-2 max-w-md text-muted">{done}</p>
+        <p className="mt-2 max-w-md text-muted">{done.message}</p>
         <div className="mt-8 flex gap-3">
           <ButtonLink href="/products" variant="outline">Keep browsing</ButtonLink>
           {user && <ButtonLink href="/account/quotes">View my requests</ButtonLink>}
@@ -78,7 +97,7 @@ export default function QuoteRequest() {
         </div>
         <ul className="space-y-3">
           {items.map((item) => (
-            <li key={item.id}>
+            <li key={item.id} {...reveal()}>
               <Card className="flex items-center gap-4 p-3">
                 <ProductImage src={item.imageUrl} alt={item.name} sizes="64px" className="h-16 w-16 shrink-0 rounded-md" />
                 <div className="min-w-0 flex-1">
@@ -111,7 +130,7 @@ export default function QuoteRequest() {
         <Link href="/products" className="mt-4 inline-block text-sm text-primary hover:underline">+ Add more products</Link>
       </section>
 
-      <section aria-labelledby="details-heading">
+      <section {...reveal()} aria-labelledby="details-heading">
         <Card className="p-6">
           <h2 id="details-heading" className="mb-5 text-lg font-semibold">Your details</h2>
           <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-4">
@@ -123,7 +142,7 @@ export default function QuoteRequest() {
             <Button type="submit" size="lg" loading={mutation.isPending} className="w-full">
               <Send className="h-4 w-4" aria-hidden /> Send quote request
             </Button>
-            {!user && (
+            {!user && !STATIC_MODE && (
               <p className="text-center text-xs text-muted">
                 <Link href="/login?next=/quote" className="text-primary hover:underline">Log in</Link> to track your requests in your account.
               </p>

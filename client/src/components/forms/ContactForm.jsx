@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import { CheckCircle2, Send } from 'lucide-react';
 import ContactFields, { contactDefaults } from './ContactFields';
+import SendVia from './SendVia';
 import { Button } from '@/components/ui/button';
 import { Field, Textarea } from '@/components/ui/input';
 import { Alert } from '@/components/ui/card';
@@ -28,15 +29,26 @@ export default function ContactForm() {
 
   const mutation = useMutation({
     mutationFn: enquiryService.contact,
-    onSuccess: (res) => setDone(res.message),
+    onSuccess: setDone,
   });
+
+  if (done?.whatsapp) {
+    return (
+      <div className="flex flex-col items-center rounded-lg border border-success/30 bg-success/5 px-6 py-12 text-center">
+        <CheckCircle2 className="mb-4 h-12 w-12 text-success" aria-hidden />
+        <h2 className="text-xl font-semibold">Message ready to send</h2>
+        <p className="mt-2 max-w-sm text-muted">Choose how you&apos;d like to send it. We usually reply within the day.</p>
+        <SendVia whatsapp={done.whatsapp} mailto={done.mailto} />
+      </div>
+    );
+  }
 
   if (done) {
     return (
       <div className="flex flex-col items-center rounded-lg border border-success/30 bg-success/5 px-6 py-14 text-center">
         <CheckCircle2 className="mb-4 h-12 w-12 text-success" aria-hidden />
         <h2 className="text-xl font-semibold">Message sent</h2>
-        <p className="mt-2 max-w-sm text-muted">{done}</p>
+        <p className="mt-2 max-w-sm text-muted">{done.message}</p>
       </div>
     );
   }

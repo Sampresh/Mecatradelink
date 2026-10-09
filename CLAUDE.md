@@ -45,5 +45,8 @@ Electrical products supplier website (switches, cables, LED lighting, MCBs, DBs,
 - Admin forms with `<select>`/checkboxes fed by queries must mount only after those queries load (see `ProductForm`), otherwise saved values are dropped.
 - Brand assets: `docs/brand/logo-master.png` (transparent) is the source; regenerate `client/public/images/brand/logo-{96,192,512}.png`, `app/icon.png`, `app/apple-icon.png`, `app/opengraph-image.png` from it. Use `<BrandMark>` for the badge and `<Logo>` for badge + name.
 - Buttons are mobile-first; avoid hard-coding large heights on phones.
+- Showcase mode (`client/src/lib/mode.js`): no `NEXT_PUBLIC_API_URL` → `serverFetch` answers from `src/lib/staticApi.js` + `src/data/catalog.json`, `enquiryService` returns WhatsApp/mailto links (`lib/staticEnquiry.js`), auth bootstrap is skipped and the (auth)/(user)/(admin) layouts render `ShowcaseNotice`. Any new public endpoint used by pages must be added to `staticApi.js` too. Refresh data with `npm run export-data`.
+- The API pings the site's `/api/revalidate` on every startup (a restart can drop a pending post-edit refresh).
+- Motion: add `{...reveal()}` (or `reveal('soft'|'fade'|'zoom')` from `@/lib/motion`) to containers that should animate in; never hand-write `data-reveal` (needs `suppressHydrationWarning`). Use `.card-glow` (+ `.card-glow-fill` on cards without photos) for hoverable cards. Reveal CSS animates `translate`/`scale`/`opacity`/`filter`, hovers use `transform`: keep them separate. Runtime: `components/common/MotionScripts.jsx`.
 - Business details (phone, WhatsApp, email, address, hours, map) live in `client/src/lib/site.js` and `server/src/config/business.js`.
 - Business contact details are placeholders in `client/src/lib/site.js`.

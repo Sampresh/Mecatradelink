@@ -5,6 +5,7 @@ import PageHeader from '@/components/common/PageHeader';
 import { CtaBand, WhyChooseUs } from '@/components/home/HomeSections';
 import { buildMetadata } from '@/lib/seo';
 import { site } from '@/lib/site';
+import { reveal } from '@/lib/motion';
 
 export const metadata = buildMetadata({
   title: 'About Us',
@@ -49,10 +50,12 @@ const COMMITMENTS = [
 
 function Section({ id, eyebrow, title, children, className = '' }) {
   return (
-    <section aria-labelledby={id} className={`py-16 sm:py-20 ${className}`}>
+    <section aria-labelledby={id} className={`py-12 sm:py-20 ${className}`}>
       <div className="container-page">
-        <p className="mb-2 text-sm font-semibold uppercase tracking-[0.14em] text-primary">{eyebrow}</p>
-        <h2 id={id} className="mb-8 max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>
+        <div {...reveal('soft')}>
+          <p className="mb-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-primary sm:mb-2 sm:text-sm">{eyebrow}</p>
+          <h2 id={id} className="mb-6 max-w-3xl text-2xl font-bold tracking-tight sm:mb-8 sm:text-3xl md:text-4xl">{title}</h2>
+        </div>
         {children}
       </div>
     </section>
@@ -71,7 +74,7 @@ export default function AboutPage() {
 
       <Section id="who" eyebrow="Who we are" title="A dedicated electrical products supplier">
         <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr]">
-          <div className="prose-content">
+          <div {...reveal()} className="prose-content">
             <p>
               {site.name} is an electrical trading business based in {site.contact.address}. We focus on one
               thing: the electrical products and installation materials that go into homes, businesses and
@@ -83,7 +86,7 @@ export default function AboutPage() {
               give advice you can rely on.
             </p>
           </div>
-          <div className="space-y-3 rounded-lg border border-border bg-surface p-6">
+          <div {...reveal()} className="card-glow h-fit space-y-3 rounded-lg border border-border bg-surface p-6">
             <p className="flex items-center gap-2 text-sm text-zinc-300"><MapPin className="h-4 w-4 text-primary" aria-hidden /> {site.contact.address}</p>
             <p className="flex items-center gap-2 text-sm text-zinc-300"><Users className="h-4 w-4 text-primary" aria-hidden /> Serving homeowners, businesses &amp; contractors</p>
             {ESTABLISHED && (
@@ -94,13 +97,13 @@ export default function AboutPage() {
       </Section>
 
       <Section id="what" eyebrow="What we do" title="Everything for a safe, modern electrical installation" className="border-y border-border bg-surface/30">
-        <p className="mb-6 max-w-3xl text-muted">
+        <p {...reveal()} className="mb-6 max-w-3xl text-muted">
           We supply electrical products and materials, from a single replacement switch to complete project
           requirements. Our range includes:
         </p>
         <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {WHAT_WE_DO.map((t) => (
-            <li key={t} className="flex gap-3 rounded-lg border border-border bg-background p-4 text-sm text-zinc-200">
+            <li key={t} {...reveal()} className="card-glow flex gap-3 rounded-lg border border-border bg-background p-4 text-sm text-zinc-200">
               <BadgeCheck className="h-5 w-5 shrink-0 text-primary" aria-hidden /> {t}
             </li>
           ))}
@@ -108,15 +111,15 @@ export default function AboutPage() {
       </Section>
 
       <Section id="experience" eyebrow="Our experience" title="Trusted on jobs of every size">
-        <p className="mb-8 max-w-3xl text-muted">
+        <p {...reveal()} className="mb-8 max-w-3xl text-muted">
           {ESTABLISHED ? `Since ${ESTABLISHED}, we have` : 'We have'} supplied electrical materials for household
           repairs, new homes, retail fit-outs, offices and multi-storey building projects. That experience means
           we understand what electricians need on site: the right specification, in the right quantity, on time.
         </p>
         <div className="grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
           {EXPERIENCE.map(({ icon: Icon, title, text }) => (
-            <div key={title} className="bg-background p-6">
-              <Icon className="mb-4 h-7 w-7 text-primary" aria-hidden />
+            <div key={title} {...reveal('fade')} className="group bg-background p-5 transition-colors duration-300 hover:bg-surface sm:p-6">
+              <Icon className="mb-4 h-7 w-7 text-primary transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110" aria-hidden />
               <h3 className="font-semibold">{title}</h3>
               <p className="mt-1.5 text-sm text-muted">{text}</p>
             </div>
@@ -127,7 +130,7 @@ export default function AboutPage() {
       <Section id="values" eyebrow="Our business values" title="How we work" className="border-y border-border bg-surface/30">
         <div className="grid gap-4 sm:grid-cols-2">
           {VALUES.map(({ icon: Icon, title, text }) => (
-            <div key={title} className="flex gap-4 rounded-lg border border-border bg-background p-6">
+            <div key={title} {...reveal()} className="card-glow card-glow-fill flex gap-4 rounded-lg border border-border bg-background p-5 sm:p-6">
               <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary"><Icon className="h-5 w-5" aria-hidden /></span>
               <div>
                 <h3 className="font-semibold">{title}</h3>
@@ -141,7 +144,7 @@ export default function AboutPage() {
       <Section id="commitment" eyebrow="Our commitment" title="Quality products, looked-after customers">
         <ul className="grid gap-4 md:grid-cols-2">
           {COMMITMENTS.map(({ icon: Icon, text }) => (
-            <li key={text} className="flex gap-3 text-zinc-200">
+            <li key={text} {...reveal()} className="flex gap-3 text-zinc-200">
               <Icon className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden /> {text}
             </li>
           ))}

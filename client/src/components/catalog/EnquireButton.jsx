@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import { CheckCircle2, MessageSquareText, Send, X } from 'lucide-react';
 import ProductImage from './ProductImage';
+import SendVia from '@/components/forms/SendVia';
 import WhatsAppIcon from '@/components/common/WhatsAppIcon';
 import { Button, buttonClasses } from '@/components/ui/button';
 import { Field, Input, Textarea } from '@/components/ui/input';
@@ -23,7 +24,10 @@ function EnquireForm({ product, onDone }) {
     defaultValues: { name: user?.name ?? '', phone: user?.phone ?? '', email: user?.email ?? '', quantity: 1, message: '' },
   });
   const mutation = useMutation({
-    mutationFn: ({ quantity, ...v }) => enquiryService.quote({ ...v, items: [{ productId: product.id, quantity }] }),
+    mutationFn: ({ quantity, ...v }) => enquiryService.quote(
+      { ...v, items: [{ productId: product.id, quantity }] },
+      { lines: [{ name: product.name, model: product.model, quantity, unit: product.unit }] },
+    ),
     onSuccess: onDone,
   });
 
@@ -105,15 +109,23 @@ export default function EnquireButton({ product, size = 'sm', className, label =
                 <X className="h-5 w-5" />
               </button>
             </div>
-            {sent ? (
+            {sent?.whatsapp ? (
+              // Showcase mode: hand the prepared message to WhatsApp / email.
+              <div className="flex flex-col items-center py-4 text-center">
+                <CheckCircle2 className="mb-3 h-12 w-12 text-success" aria-hidden />
+                <h3 className="text-lg font-semibold">Enquiry ready to send</h3>
+                <p className="mt-1 max-w-sm text-sm text-muted">Send it to our sales team and we&apos;ll reply with price and availability.</p>
+                <SendVia whatsapp={sent.whatsapp} mailto={sent.mailto} />
+              </div>
+            ) : sent ? (
               <div className="flex flex-col items-center py-6 text-center">
                 <CheckCircle2 className="mb-3 h-12 w-12 text-success" aria-hidden />
                 <h3 className="text-lg font-semibold">Enquiry sent</h3>
-                <p className="mt-1 max-w-sm text-sm text-muted">{sent} We&apos;ll get back to you with price and availability.</p>
+                <p className="mt-1 max-w-sm text-sm text-muted">{sent.message} We&apos;ll get back to you with price and availability.</p>
                 <Button variant="secondary" className="mt-6" onClick={close}>Close</Button>
               </div>
             ) : (
-              <EnquireForm product={product} onDone={(res) => setSent(res.message)} />
+              <EnquireForm product={product} onDone={setSent} />
             )}
           </div>
         )}

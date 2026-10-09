@@ -1,0 +1,878 @@
+{
+  "exportedAt": "2026-10-09T13:47:55.144Z",
+  "source": "http://localhost:5001/api/v1",
+  "categories": [
+    {
+      "id": "cmv0gw9m800011hu14x8mf01q",
+      "name": "Switches & Sockets",
+      "slug": "switches-and-sockets",
+      "description": "Modular switches, switch sockets, plates, covers and regulators for homes, shops and offices.",
+      "icon": "ToggleRight",
+      "imageUrl": null,
+      "sortOrder": 0,
+      "createdAt": "2026-10-09T04:30:41.840Z",
+      "updatedAt": "2026-10-09T04:30:41.840Z",
+      "brands": [],
+      "productCount": 3
+    },
+    {
+      "id": "cmv0gw9mb00021hu19f1ax27p",
+      "name": "Lighting",
+      "slug": "lighting",
+      "description": "LED bulbs, panel lights, downlights, spotlights, wall, ceiling and decorative lights.",
+      "icon": "Lightbulb",
+      "imageUrl": null,
+      "sortOrder": 1,
+      "createdAt": "2026-10-09T04:30:41.843Z",
+      "updatedAt": "2026-10-09T04:30:41.843Z",
+      "brands": [],
+      "productCount": 6
+    },
+    {
+      "id": "cmv0gw9md00031hu1e46yymxi",
+      "name": "Wires & Cables",
+      "slug": "wires-and-cables",
+      "description": "House wiring, flexible, multi-core and armoured cables in every common size.",
+      "icon": "Cable",
+      "imageUrl": null,
+      "sortOrder": 2,
+      "createdAt": "2026-10-09T04:30:41.845Z",
+      "updatedAt": "2026-10-09T04:30:41.845Z",
+      "brands": [],
+      "productCount": 3
+    },
+    {
+      "id": "cmv0gw9me00041hu1dvibufy8",
+      "name": "Circuit Protection",
+      "slug": "circuit-protection",
+      "description": "MCBs, RCCBs, isolators and surge protection for safe installations.",
+      "icon": "ShieldCheck",
+      "imageUrl": null,
+      "sortOrder": 3,
+      "createdAt": "2026-10-09T04:30:41.847Z",
+      "updatedAt": "2026-10-09T04:30:41.847Z",
+      "brands": [],
+      "productCount": 2
+    },
+    {
+      "id": "cmv0gw9mg00051hu1923f4j4u",
+      "name": "Electrical Accessories",
+      "slug": "electrical-accessories",
+      "description": "Plugs, holders, junction boxes, conduits, glands, lugs and fittings.",
+      "icon": "Plug",
+      "imageUrl": null,
+      "sortOrder": 4,
+      "createdAt": "2026-10-09T04:30:41.848Z",
+      "updatedAt": "2026-10-09T04:30:41.848Z",
+      "brands": [],
+      "productCount": 2
+    },
+    {
+      "id": "cmv0gw9mh00061hu13upivnzu",
+      "name": "Electrical Tools",
+      "slug": "electrical-tools",
+      "description": "Testers, multimeters, strippers, crimpers and installation tools.",
+      "icon": "Wrench",
+      "imageUrl": null,
+      "sortOrder": 5,
+      "createdAt": "2026-10-09T04:30:41.850Z",
+      "updatedAt": "2026-10-09T04:30:41.850Z",
+      "brands": [],
+      "productCount": 2
+    },
+    {
+      "id": "cmv0gw9mj00071hu1iytp6ep2",
+      "name": "Distribution & Control",
+      "slug": "distribution-and-control",
+      "description": "Distribution boards, changeovers, contactors and control gear.",
+      "icon": "CircuitBoard",
+      "imageUrl": null,
+      "sortOrder": 6,
+      "createdAt": "2026-10-09T04:30:41.851Z",
+      "updatedAt": "2026-10-09T04:30:41.851Z",
+      "brands": [],
+      "productCount": 1
+    },
+    {
+      "id": "cmv0gw9mk00081hu1q39yd2kj",
+      "name": "Other Electrical Products",
+      "slug": "other-electrical-products",
+      "description": "Everything else for your electrical project. Ask us if you can’t find it.",
+      "icon": "Boxes",
+      "imageUrl": null,
+      "sortOrder": 7,
+      "createdAt": "2026-10-09T04:30:41.853Z",
+      "updatedAt": "2026-10-09T04:30:41.853Z",
+      "brands": [],
+      "productCount": 0
+    }
+  ],
+  "brands": [],
+  "products": [
+    {
+      "id": "cmv0gw9my001a1hu1f6eu874a",
+      "name": "Insulated Wire Stripper",
+      "slug": "insulated-wire-stripper",
+      "sku": null,
+      "model": "1000V insulated",
+      "summary": "Adjustable stripper and cutter, 1000V insulated handles.",
+      "description": "<p>Adjustable stripper and cutter, 1000V insulated handles.</p>",
+      "specs": [
+        {
+          "label": "Insulation",
+          "value": "1000V"
+        }
+      ],
+      "unit": "piece",
+      "isActive": true,
+      "isFeatured": false,
+      "categoryId": "cmv0gw9mh00061hu13upivnzu",
+      "brandId": null,
+      "createdAt": "2026-10-09T04:30:41.866Z",
+      "updatedAt": "2026-10-09T04:30:41.866Z",
+      "category": {
+        "id": "cmv0gw9mh00061hu13upivnzu",
+        "name": "Electrical Tools",
+        "slug": "electrical-tools"
+      },
+      "brand": null,
+      "images": [
+        {
+          "id": "cmv0jfc0b0003ti0606jj2tbr",
+          "url": "/images/catalog/products/add389bd-93c9-4972-8ef2-0fd658e081eb.webp",
+          "alt": "Insulated Wire Stripper (sample image)"
+        }
+      ],
+      "imageUrl": "/images/catalog/products/add389bd-93c9-4972-8ef2-0fd658e081eb.webp"
+    },
+    {
+      "id": "cmv0gw9my00181hu1autis5o9",
+      "name": "Digital Multimeter",
+      "slug": "digital-multimeter",
+      "sku": null,
+      "model": "CAT III 600V",
+      "summary": "Auto-ranging multimeter for voltage, current and continuity.",
+      "description": "<p>Auto-ranging multimeter for voltage, current and continuity.</p>",
+      "specs": [
+        {
+          "label": "CAT rating",
+          "value": "CAT III 600V"
+        }
+      ],
+      "unit": "piece",
+      "isActive": true,
+      "isFeatured": false,
+      "categoryId": "cmv0gw9mh00061hu13upivnzu",
+      "brandId": null,
+      "createdAt": "2026-10-09T04:30:41.866Z",
+      "updatedAt": "2026-10-09T04:30:41.866Z",
+      "category": {
+        "id": "cmv0gw9mh00061hu13upivnzu",
+        "name": "Electrical Tools",
+        "slug": "electrical-tools"
+      },
+      "brand": null,
+      "images": [
+        {
+          "id": "cmv0jfc240004ti060gcfg39i",
+          "url": "/images/catalog/products/8162fb2a-93e7-49c9-b696-d8183d0cde5d.webp",
+          "alt": "Digital Multimeter (sample image)"
+        }
+      ],
+      "imageUrl": "/images/catalog/products/8162fb2a-93e7-49c9-b696-d8183d0cde5d.webp"
+    },
+    {
+      "id": "cmv0gw9mx00161hu13xhkhx3x",
+      "name": "B22 Batten Lamp Holder",
+      "slug": "b22-batten-lamp-holder",
+      "sku": null,
+      "model": "B22 batten",
+      "summary": "Bakelite batten holder for B22 bulbs.",
+      "description": "<p>Bakelite batten holder for B22 bulbs.</p>",
+      "specs": [
+        {
+          "label": "Base",
+          "value": "B22"
+        }
+      ],
+      "unit": "piece",
+      "isActive": true,
+      "isFeatured": false,
+      "categoryId": "cmv0gw9mg00051hu1923f4j4u",
+      "brandId": null,
+      "createdAt": "2026-10-09T04:30:41.866Z",
+      "updatedAt": "2026-10-09T04:30:41.866Z",
+      "category": {
+        "id": "cmv0gw9mg00051hu1923f4j4u",
+        "name": "Electrical Accessories",
+        "slug": "electrical-accessories"
+      },
+      "brand": null,
+      "images": [
+        {
+          "id": "cmv0jfc3y0005ti06itvp32hb",
+          "url": "/images/catalog/products/ca5d5304-5651-44b0-a26c-71a9f5e4797c.webp",
+          "alt": "B22 Batten Lamp Holder (sample image)"
+        }
+      ],
+      "imageUrl": "/images/catalog/products/ca5d5304-5651-44b0-a26c-71a9f5e4797c.webp"
+    },
+    {
+      "id": "cmv0gw9mx00141hu160hmoiej",
+      "name": "16A 3-Pin Plug Top",
+      "slug": "16a-3-pin-plug-top",
+      "sku": null,
+      "model": "16A 3-pin",
+      "summary": "Heavy-duty plug top with brass pins.",
+      "description": "<p>Heavy-duty plug top with brass pins.</p>",
+      "specs": [
+        {
+          "label": "Rating",
+          "value": "16A"
+        }
+      ],
+      "unit": "piece",
+      "isActive": true,
+      "isFeatured": false,
+      "categoryId": "cmv0gw9mg00051hu1923f4j4u",
+      "brandId": null,
+      "createdAt": "2026-10-09T04:30:41.865Z",
+      "updatedAt": "2026-10-09T04:30:41.865Z",
+      "category": {
+        "id": "cmv0gw9mg00051hu1923f4j4u",
+        "name": "Electrical Accessories",
+        "slug": "electrical-accessories"
+      },
+      "brand": null,
+      "images": [
+        {
+          "id": "cmv0jfc5p0006ti06s55201p6",
+          "url": "/images/catalog/products/919d7754-515f-48aa-98b7-a9d32d04bcd5.webp",
+          "alt": "16A 3-Pin Plug Top (sample image)"
+        }
+      ],
+      "imageUrl": "/images/catalog/products/919d7754-515f-48aa-98b7-a9d32d04bcd5.webp"
+    },
+    {
+      "id": "cmv0gw9mw00121hu1ql2pq1ln",
+      "name": "8-Way SPN Distribution Board",
+      "slug": "8-way-spn-distribution-board",
+      "sku": null,
+      "model": "8-way SPN",
+      "summary": "Double-door powder-coated DB with neutral and earth bars.",
+      "description": "<p>Double-door powder-coated DB with neutral and earth bars.</p>",
+      "specs": [
+        {
+          "label": "Ways",
+          "value": "8"
+        },
+        {
+          "label": "Type",
+          "value": "SPN"
+        }
+      ],
+      "unit": "piece",
+      "isActive": true,
+      "isFeatured": false,
+      "categoryId": "cmv0gw9mj00071hu1iytp6ep2",
+      "brandId": null,
+      "createdAt": "2026-10-09T04:30:41.865Z",
+      "updatedAt": "2026-10-09T04:30:41.865Z",
+      "category": {
+        "id": "cmv0gw9mj00071hu1iytp6ep2",
+        "name": "Distribution & Control",
+        "slug": "distribution-and-control"
+      },
+      "brand": null,
+      "images": [
+        {
+          "id": "cmv0jfc7l0007ti060okv885o",
+          "url": "/images/catalog/products/0d19d445-dbd8-417b-bcbd-ad7ca1b94299.webp",
+          "alt": "8-Way SPN Distribution Board (sample image)"
+        }
+      ],
+      "imageUrl": "/images/catalog/products/0d19d445-dbd8-417b-bcbd-ad7ca1b94299.webp"
+    },
+    {
+      "id": "cmv0gw9mv00101hu1arptttqk",
+      "name": "40A 30mA Double Pole RCCB",
+      "slug": "40a-30ma-double-pole-rccb",
+      "sku": null,
+      "model": "40A 30mA DP",
+      "summary": "Residual current protection against earth leakage and shock.",
+      "description": "<p>Residual current protection against earth leakage and shock.</p>",
+      "specs": [
+        {
+          "label": "Rating",
+          "value": "40A"
+        },
+        {
+          "label": "Sensitivity",
+          "value": "30mA"
+        },
+        {
+          "label": "Poles",
+          "value": "DP"
+        }
+      ],
+      "unit": "piece",
+      "isActive": true,
+      "isFeatured": false,
+      "categoryId": "cmv0gw9me00041hu1dvibufy8",
+      "brandId": null,
+      "createdAt": "2026-10-09T04:30:41.864Z",
+      "updatedAt": "2026-10-09T04:30:41.864Z",
+      "category": {
+        "id": "cmv0gw9me00041hu1dvibufy8",
+        "name": "Circuit Protection",
+        "slug": "circuit-protection"
+      },
+      "brand": null,
+      "images": [
+        {
+          "id": "cmv0jfc9f0008ti06466udxqh",
+          "url": "/images/catalog/products/7687e641-04a2-4ee4-a4db-3fe056e86b07.webp",
+          "alt": "40A 30mA Double Pole RCCB (sample image)"
+        }
+      ],
+      "imageUrl": "/images/catalog/products/7687e641-04a2-4ee4-a4db-3fe056e86b07.webp"
+    },
+    {
+      "id": "cmv0gw9mu000w1hu14g6yt2b8",
+      "name": "Modern Ring Ceiling Light 36W",
+      "slug": "modern-ring-ceiling-light-36w",
+      "sku": null,
+      "model": "36W, Ø600 mm",
+      "summary": "Contemporary LED ring fixture for living spaces.",
+      "description": "<p>Contemporary LED ring fixture for living spaces.</p>",
+      "specs": [
+        {
+          "label": "Wattage",
+          "value": "36W"
+        },
+        {
+          "label": "Diameter",
+          "value": "600 mm"
+        }
+      ],
+      "unit": "piece",
+      "isActive": true,
+      "isFeatured": false,
+      "categoryId": "cmv0gw9mb00021hu19f1ax27p",
+      "brandId": null,
+      "createdAt": "2026-10-09T04:30:41.863Z",
+      "updatedAt": "2026-10-09T04:30:41.863Z",
+      "category": {
+        "id": "cmv0gw9mb00021hu19f1ax27p",
+        "name": "Lighting",
+        "slug": "lighting"
+      },
+      "brand": null,
+      "images": [
+        {
+          "id": "cmv0jfcdf000ati06wtouf9g4",
+          "url": "/images/catalog/products/cea5a882-8477-4609-9919-c4f68c38c9d7.webp",
+          "alt": "Modern Ring Ceiling Light 36W (sample image)"
+        }
+      ],
+      "imageUrl": "/images/catalog/products/cea5a882-8477-4609-9919-c4f68c38c9d7.webp"
+    },
+    {
+      "id": "cmv0gw9mv000y1hu1b22svcfi",
+      "name": "32A Single Pole MCB (C-Curve)",
+      "slug": "32a-single-pole-mcb-c-curve",
+      "sku": null,
+      "model": "32A SP C-curve",
+      "summary": "Miniature circuit breaker for overload and short-circuit protection.",
+      "description": "<p>Miniature circuit breaker for overload and short-circuit protection.</p>",
+      "specs": [
+        {
+          "label": "Rating",
+          "value": "32A"
+        },
+        {
+          "label": "Poles",
+          "value": "SP"
+        },
+        {
+          "label": "Curve",
+          "value": "C"
+        }
+      ],
+      "unit": "piece",
+      "isActive": true,
+      "isFeatured": true,
+      "categoryId": "cmv0gw9me00041hu1dvibufy8",
+      "brandId": null,
+      "createdAt": "2026-10-09T04:30:41.863Z",
+      "updatedAt": "2026-10-09T04:30:41.863Z",
+      "category": {
+        "id": "cmv0gw9me00041hu1dvibufy8",
+        "name": "Circuit Protection",
+        "slug": "circuit-protection"
+      },
+      "brand": null,
+      "images": [
+        {
+          "id": "cmv0jfcb70009ti06sb8yeshz",
+          "url": "/images/catalog/products/5ba6f9df-4559-4728-b66e-302961c8ad3c.webp",
+          "alt": "32A Single Pole MCB (C-Curve) (sample image)"
+        }
+      ],
+      "imageUrl": "/images/catalog/products/5ba6f9df-4559-4728-b66e-302961c8ad3c.webp"
+    },
+    {
+      "id": "cmv0gw9mu000s1hu1v7qku41k",
+      "name": "7W COB Spotlight",
+      "slug": "7w-cob-spotlight",
+      "sku": null,
+      "model": "7W COB 36°",
+      "summary": "Focused COB spotlight for shops and display areas.",
+      "description": "<p>Focused COB spotlight for shops and display areas.</p>",
+      "specs": [
+        {
+          "label": "Wattage",
+          "value": "7W"
+        },
+        {
+          "label": "Beam",
+          "value": "36°"
+        }
+      ],
+      "unit": "piece",
+      "isActive": true,
+      "isFeatured": false,
+      "categoryId": "cmv0gw9mb00021hu19f1ax27p",
+      "brandId": null,
+      "createdAt": "2026-10-09T04:30:41.862Z",
+      "updatedAt": "2026-10-09T04:30:41.862Z",
+      "category": {
+        "id": "cmv0gw9mb00021hu19f1ax27p",
+        "name": "Lighting",
+        "slug": "lighting"
+      },
+      "brand": null,
+      "images": [
+        {
+          "id": "cmv0jfcjl000dti06myyoyjnr",
+          "url": "/images/catalog/products/c38d4534-5a12-491d-8c7f-752a0012cedf.webp",
+          "alt": "7W COB Spotlight (sample image)"
+        }
+      ],
+      "imageUrl": "/images/catalog/products/c38d4534-5a12-491d-8c7f-752a0012cedf.webp"
+    },
+    {
+      "id": "cmv0gw9mu000u1hu1ygmmay37",
+      "name": "Up-Down Wall Light (Outdoor)",
+      "slug": "up-down-wall-light-outdoor",
+      "sku": null,
+      "model": "IP65 up-down",
+      "summary": "IP65 aluminium wall light for facades and gates.",
+      "description": "<p>IP65 aluminium wall light for facades and gates.</p>",
+      "specs": [
+        {
+          "label": "IP rating",
+          "value": "IP65"
+        },
+        {
+          "label": "Finish",
+          "value": "Matte black"
+        }
+      ],
+      "unit": "piece",
+      "isActive": true,
+      "isFeatured": true,
+      "categoryId": "cmv0gw9mb00021hu19f1ax27p",
+      "brandId": null,
+      "createdAt": "2026-10-09T04:30:41.862Z",
+      "updatedAt": "2026-10-09T04:30:41.862Z",
+      "category": {
+        "id": "cmv0gw9mb00021hu19f1ax27p",
+        "name": "Lighting",
+        "slug": "lighting"
+      },
+      "brand": null,
+      "images": [
+        {
+          "id": "cmv0jfcft000bti06a3vqk1ip",
+          "url": "/images/catalog/products/e135a02c-0678-4d97-890d-31f726a1582a.webp",
+          "alt": "Up-Down Wall Light (Outdoor) (sample image)"
+        }
+      ],
+      "imageUrl": "/images/catalog/products/e135a02c-0678-4d97-890d-31f726a1582a.webp"
+    },
+    {
+      "id": "cmv0gw9mt000q1hu1huievl5k",
+      "name": "18W Round LED Panel Light",
+      "slug": "18w-round-led-panel-light",
+      "sku": null,
+      "model": "18W round, recessed",
+      "summary": "Slim recessed panel for false ceilings.",
+      "description": "<p>Slim recessed panel for false ceilings.</p>",
+      "specs": [
+        {
+          "label": "Wattage",
+          "value": "18W"
+        },
+        {
+          "label": "Cut-out",
+          "value": "205 mm"
+        }
+      ],
+      "unit": "piece",
+      "isActive": true,
+      "isFeatured": true,
+      "categoryId": "cmv0gw9mb00021hu19f1ax27p",
+      "brandId": null,
+      "createdAt": "2026-10-09T04:30:41.862Z",
+      "updatedAt": "2026-10-09T04:30:41.862Z",
+      "category": {
+        "id": "cmv0gw9mb00021hu19f1ax27p",
+        "name": "Lighting",
+        "slug": "lighting"
+      },
+      "brand": null,
+      "images": [
+        {
+          "id": "cmv0jfchq000cti06cj8k0omw",
+          "url": "/images/catalog/products/2e53a531-224f-47c3-b30a-60b0c909cead.webp",
+          "alt": "18W Round LED Panel Light (sample image)"
+        }
+      ],
+      "imageUrl": "/images/catalog/products/2e53a531-224f-47c3-b30a-60b0c909cead.webp"
+    },
+    {
+      "id": "cmv0gw9ms000m1hu1lejtrs14",
+      "name": "9W LED Bulb B22 Cool Day Light",
+      "slug": "9w-led-bulb-b22-cool-day-light",
+      "sku": null,
+      "model": "9W B22 6500K",
+      "summary": "Bright 6500K LED bulb with 2-year warranty.",
+      "description": "<p>Bright 6500K LED bulb with 2-year warranty.</p>",
+      "specs": [
+        {
+          "label": "Wattage",
+          "value": "9W"
+        },
+        {
+          "label": "Base",
+          "value": "B22"
+        },
+        {
+          "label": "Colour",
+          "value": "6500K"
+        }
+      ],
+      "unit": "piece",
+      "isActive": true,
+      "isFeatured": true,
+      "categoryId": "cmv0gw9mb00021hu19f1ax27p",
+      "brandId": null,
+      "createdAt": "2026-10-09T04:30:41.861Z",
+      "updatedAt": "2026-10-09T04:31:09.174Z",
+      "category": {
+        "id": "cmv0gw9mb00021hu19f1ax27p",
+        "name": "Lighting",
+        "slug": "lighting"
+      },
+      "brand": null,
+      "images": [
+        {
+          "id": "cmv0jfbyg0002ti06ghoqlzau",
+          "url": "/images/catalog/products/7bda8dd5-c57f-4f28-8d30-9cc22177353e.webp",
+          "alt": "9W LED Bulb B22 Cool Day Light (sample image)"
+        }
+      ],
+      "imageUrl": "/images/catalog/products/7bda8dd5-c57f-4f28-8d30-9cc22177353e.webp"
+    },
+    {
+      "id": "cmv0gw9mt000o1hu1661ampbh",
+      "name": "12W LED Bulb E27 Warm White",
+      "slug": "12w-led-bulb-e27-warm-white",
+      "sku": null,
+      "model": "12W E27 3000K",
+      "summary": "Warm 3000K bulb for living rooms and bedrooms.",
+      "description": "<p>Warm 3000K bulb for living rooms and bedrooms.</p>",
+      "specs": [
+        {
+          "label": "Wattage",
+          "value": "12W"
+        },
+        {
+          "label": "Base",
+          "value": "E27"
+        }
+      ],
+      "unit": "piece",
+      "isActive": true,
+      "isFeatured": false,
+      "categoryId": "cmv0gw9mb00021hu19f1ax27p",
+      "brandId": null,
+      "createdAt": "2026-10-09T04:30:41.861Z",
+      "updatedAt": "2026-10-09T04:30:41.861Z",
+      "category": {
+        "id": "cmv0gw9mb00021hu19f1ax27p",
+        "name": "Lighting",
+        "slug": "lighting"
+      },
+      "brand": null,
+      "images": [
+        {
+          "id": "cmv0jfclr000eti06qzaaih74",
+          "url": "/images/catalog/products/b8f2b34d-8af0-408d-b36b-30eea72922e6.webp",
+          "alt": "12W LED Bulb E27 Warm White (sample image)"
+        }
+      ],
+      "imageUrl": "/images/catalog/products/b8f2b34d-8af0-408d-b36b-30eea72922e6.webp"
+    },
+    {
+      "id": "cmv0gw9ms000k1hu1940gnhcd",
+      "name": "4 Core 6 sq mm Armoured Cable",
+      "slug": "4-core-6-sq-mm-armoured-cable",
+      "sku": null,
+      "model": "4C × 6 sq mm",
+      "summary": "Steel-wire armoured cable for sub-mains and outdoor runs.",
+      "description": "<p>Steel-wire armoured cable for sub-mains and outdoor runs.</p>",
+      "specs": [
+        {
+          "label": "Cores",
+          "value": "4"
+        },
+        {
+          "label": "Size",
+          "value": "6 sq mm"
+        }
+      ],
+      "unit": "metre",
+      "isActive": true,
+      "isFeatured": false,
+      "categoryId": "cmv0gw9md00031hu1e46yymxi",
+      "brandId": null,
+      "createdAt": "2026-10-09T04:30:41.860Z",
+      "updatedAt": "2026-10-09T04:30:41.860Z",
+      "category": {
+        "id": "cmv0gw9md00031hu1e46yymxi",
+        "name": "Wires & Cables",
+        "slug": "wires-and-cables"
+      },
+      "brand": null,
+      "images": [
+        {
+          "id": "cmv0jfcnm000fti061g5q5sm9",
+          "url": "/images/catalog/products/92f12a22-f166-4e2e-a583-ba2876c3bcaa.webp",
+          "alt": "4 Core 6 sq mm Armoured Cable (sample image)"
+        }
+      ],
+      "imageUrl": "/images/catalog/products/92f12a22-f166-4e2e-a583-ba2876c3bcaa.webp"
+    },
+    {
+      "id": "cmv0gw9mr000i1hu179x1m4qj",
+      "name": "2.5 sq mm FR PVC House Wire",
+      "slug": "25-sq-mm-fr-pvc-house-wire",
+      "sku": null,
+      "model": "2.5 sq mm × 90 m",
+      "summary": "Copper house wire for power and socket circuits.",
+      "description": "<p>Copper house wire for power and socket circuits.</p>",
+      "specs": [
+        {
+          "label": "Size",
+          "value": "2.5 sq mm"
+        },
+        {
+          "label": "Length",
+          "value": "90 m"
+        }
+      ],
+      "unit": "coil",
+      "isActive": true,
+      "isFeatured": false,
+      "categoryId": "cmv0gw9md00031hu1e46yymxi",
+      "brandId": null,
+      "createdAt": "2026-10-09T04:30:41.859Z",
+      "updatedAt": "2026-10-09T04:30:41.859Z",
+      "category": {
+        "id": "cmv0gw9md00031hu1e46yymxi",
+        "name": "Wires & Cables",
+        "slug": "wires-and-cables"
+      },
+      "brand": null,
+      "images": [
+        {
+          "id": "cmv0jfcpk000gti06z6ysjrer",
+          "url": "/images/catalog/products/a1dbe214-517c-491a-b5ce-b136b36e80cb.webp",
+          "alt": "2.5 sq mm FR PVC House Wire (sample image)"
+        }
+      ],
+      "imageUrl": "/images/catalog/products/a1dbe214-517c-491a-b5ce-b136b36e80cb.webp"
+    },
+    {
+      "id": "cmv0gw9mq000g1hu1pccxj6d2",
+      "name": "1.5 sq mm FR PVC House Wire",
+      "slug": "15-sq-mm-fr-pvc-house-wire",
+      "sku": null,
+      "model": "1.5 sq mm × 90 m",
+      "summary": "Flame-retardant copper house wire for lighting circuits.",
+      "description": "<p>Flame-retardant copper house wire for lighting circuits.</p>",
+      "specs": [
+        {
+          "label": "Size",
+          "value": "1.5 sq mm"
+        },
+        {
+          "label": "Length",
+          "value": "90 m"
+        },
+        {
+          "label": "Conductor",
+          "value": "Copper"
+        }
+      ],
+      "unit": "coil",
+      "isActive": true,
+      "isFeatured": true,
+      "categoryId": "cmv0gw9md00031hu1e46yymxi",
+      "brandId": null,
+      "createdAt": "2026-10-09T04:30:41.859Z",
+      "updatedAt": "2026-10-09T04:30:41.859Z",
+      "category": {
+        "id": "cmv0gw9md00031hu1e46yymxi",
+        "name": "Wires & Cables",
+        "slug": "wires-and-cables"
+      },
+      "brand": null,
+      "images": [
+        {
+          "id": "cmv0jfcri000hti067i0gdfsp",
+          "url": "/images/catalog/products/667329fe-0f84-4eb1-b195-65803ace1a4e.webp",
+          "alt": "1.5 sq mm FR PVC House Wire (sample image)"
+        }
+      ],
+      "imageUrl": "/images/catalog/products/667329fe-0f84-4eb1-b195-65803ace1a4e.webp"
+    },
+    {
+      "id": "cmv0gw9mq000e1hu16xw502bc",
+      "name": "8-Module Switch Plate (White)",
+      "slug": "8-module-switch-plate-white",
+      "sku": null,
+      "model": "8M plate",
+      "summary": "Scratch-resistant cover plate with mounting frame.",
+      "description": "<p>Scratch-resistant cover plate with mounting frame.</p>",
+      "specs": [
+        {
+          "label": "Modules",
+          "value": "8M"
+        },
+        {
+          "label": "Finish",
+          "value": "Glossy white"
+        }
+      ],
+      "unit": "piece",
+      "isActive": true,
+      "isFeatured": false,
+      "categoryId": "cmv0gw9m800011hu14x8mf01q",
+      "brandId": null,
+      "createdAt": "2026-10-09T04:30:41.858Z",
+      "updatedAt": "2026-10-09T04:30:41.858Z",
+      "category": {
+        "id": "cmv0gw9m800011hu14x8mf01q",
+        "name": "Switches & Sockets",
+        "slug": "switches-and-sockets"
+      },
+      "brand": null,
+      "images": [
+        {
+          "id": "cmv0jfcvd000jti06socly2qj",
+          "url": "/images/catalog/products/e5f0ea2b-0e32-4729-bf24-9ee8928f006a.webp",
+          "alt": "8-Module Switch Plate (White) (sample image)"
+        }
+      ],
+      "imageUrl": "/images/catalog/products/e5f0ea2b-0e32-4729-bf24-9ee8928f006a.webp"
+    },
+    {
+      "id": "cmv0gw9mp000c1hu1xxvkfrxz",
+      "name": "16A Switch Socket Combined",
+      "slug": "16a-switch-socket-combined",
+      "sku": null,
+      "model": "16A, 3-pin",
+      "summary": "Heavy-duty switch socket for ACs, geysers and kitchen appliances.",
+      "description": "<p>Heavy-duty switch socket for ACs, geysers and kitchen appliances.</p>",
+      "specs": [
+        {
+          "label": "Rating",
+          "value": "16A, 240V"
+        },
+        {
+          "label": "Pins",
+          "value": "3-pin"
+        }
+      ],
+      "unit": "piece",
+      "isActive": true,
+      "isFeatured": true,
+      "categoryId": "cmv0gw9m800011hu14x8mf01q",
+      "brandId": null,
+      "createdAt": "2026-10-09T04:30:41.858Z",
+      "updatedAt": "2026-10-09T04:30:41.858Z",
+      "category": {
+        "id": "cmv0gw9m800011hu14x8mf01q",
+        "name": "Switches & Sockets",
+        "slug": "switches-and-sockets"
+      },
+      "brand": null,
+      "images": [
+        {
+          "id": "cmv0jfctm000iti060c63sjwp",
+          "url": "/images/catalog/products/173b4ff0-c730-4fac-ac15-1980c93fffca.webp",
+          "alt": "16A Switch Socket Combined (sample image)"
+        }
+      ],
+      "imageUrl": "/images/catalog/products/173b4ff0-c730-4fac-ac15-1980c93fffca.webp"
+    },
+    {
+      "id": "cmv0gw9mn000a1hu1svykydbt",
+      "name": "6A 1-Way Modular Switch",
+      "slug": "6a-1-way-modular-switch",
+      "sku": null,
+      "model": "6A 1-Way, 1M",
+      "summary": "Smooth-action modular switch with flame-retardant polycarbonate body.",
+      "description": "<p>Smooth-action modular switch with flame-retardant polycarbonate body.</p>",
+      "specs": [
+        {
+          "label": "Rating",
+          "value": "6A, 240V"
+        },
+        {
+          "label": "Type",
+          "value": "1-way"
+        },
+        {
+          "label": "Module",
+          "value": "1M"
+        }
+      ],
+      "unit": "piece",
+      "isActive": true,
+      "isFeatured": true,
+      "categoryId": "cmv0gw9m800011hu14x8mf01q",
+      "brandId": null,
+      "createdAt": "2026-10-09T04:30:41.855Z",
+      "updatedAt": "2026-10-09T04:30:41.855Z",
+      "category": {
+        "id": "cmv0gw9m800011hu14x8mf01q",
+        "name": "Switches & Sockets",
+        "slug": "switches-and-sockets"
+      },
+      "brand": null,
+      "images": [
+        {
+          "id": "cmv0jfcx5000kti0664fe9lzf",
+          "url": "/images/catalog/products/f347c9c9-a80b-46ff-a1c7-c48f296c1f13.webp",
+          "alt": "6A 1-Way Modular Switch (sample image)"
+        }
+      ],
+      "imageUrl": "/images/catalog/products/f347c9c9-a80b-46ff-a1c7-c48f296c1f13.webp"
+    }
+  ],
+  "gallery": []
+}

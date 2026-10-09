@@ -1,5 +1,27 @@
 # Deployment
 
+## Option A: Showcase only (client on Vercel, no server or database)
+
+The website runs on its own when `NEXT_PUBLIC_API_URL` is **not** set. It then:
+- reads the catalogue from the bundled snapshot `client/src/data/catalog.json` (photos in `client/public/images/catalog/`)
+- turns Enquire Now, the quote list and the contact form into a ready-to-send **WhatsApp** message (or email) to the shop
+- hides login and accounts; `/login`, `/account` and `/admin` show a "coming soon, contact us" panel
+
+**Deploy:**
+1. Push the repo to GitHub (the snapshot files must be committed).
+2. In Vercel: **New Project → import the repo → Root Directory: `client`** (framework: Next.js). Leave all environment variables empty.
+3. Deploy. The site URL for share previews and the sitemap is taken from Vercel automatically. Set `NEXT_PUBLIC_SITE_URL=https://<domain>` once you add a custom domain.
+
+**Updating products, photos, brands or gallery:** make the changes in the local admin (Docker stack running), then:
+```bash
+cd client && npm run export-data      # refresh src/data/catalog.json + public/images/catalog/
+git add src/data public/images/catalog && git commit -m "Update catalogue" && git push   # Vercel redeploys
+```
+
+**Upgrading to the full site later:** deploy the API (Option B) and set the client variables below on Vercel. Setting `NEXT_PUBLIC_API_URL` switches the same code to live data, accounts and admin.
+
+## Option B: Full site (client + API + database)
+
 Production layout: **client** on Vercel at `https://<domain>`, **API** on Render at `https://api.<domain>`, **Postgres** on Neon. Replace `<domain>` (placeholder used so far: `mecatradelink.com`).
 
 ## 1. Neon (database)

@@ -1,12 +1,14 @@
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import BrandLogo from '@/components/catalog/BrandLogo';
+import { reveal } from '@/lib/motion';
 
 export default function BrandCard({ brand }) {
   return (
     <Link
       href={`/brands/${brand.slug}`}
-      className="group flex flex-col rounded-lg border border-border bg-surface p-4 transition-colors hover:border-primary/50 hover:bg-surface-2"
+      {...reveal()}
+      className="card-glow card-glow-fill group flex flex-col rounded-lg border border-border bg-surface p-4"
     >
       <BrandLogo brand={brand} size="lg" />
       <div className="mt-4 flex items-center justify-between gap-2">

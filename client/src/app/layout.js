@@ -4,6 +4,7 @@ import Providers from '@/components/common/Providers';
 import SiteShell from '@/components/common/SiteShell';
 import Footer from '@/components/common/Footer';
 import WhatsAppFloat from '@/components/common/WhatsAppFloat';
+import { MotionBodyScript, MotionHeadScript } from '@/components/common/MotionScripts';
 import { site } from '@/lib/site';
 import { jsonLdHtml, organizationJsonLd } from '@/lib/seo';
 
@@ -29,13 +30,18 @@ export const viewport = { themeColor: '#09090b' };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" className={`${geistSans.variable} ${geistMono.variable}`}>
+    // data-motion is added by MotionHeadScript before paint, so React must not own that attribute.
+    <html lang="en" data-scroll-behavior="smooth" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
+      <head>
+        <MotionHeadScript />
+      </head>
       <body className="font-sans">
         <script type="application/ld+json" dangerouslySetInnerHTML={jsonLdHtml(organizationJsonLd())} />
         <Providers>
           <SiteShell footer={<Footer />}>{children}</SiteShell>
           <WhatsAppFloat />
         </Providers>
+        <MotionBodyScript />
       </body>
     </html>
   );
