@@ -20,3 +20,6 @@ server/uploads/
 .DS_Store
 .vscode/
 .idea/
+
+# graphify knowledge graph output
+graphify-out/
